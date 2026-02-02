@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Markdown Conversion</title>
+</head>
+<body>
+    <h1>Debug Page for Markdown Conversion</h1>
+    <div id="output"></div>
+    <div id="result"></div>
+
+    <script>
+        // Test markdown content
+        const testMarkdown = `# Introduction to JMeter and Scouter
+
+JMeter와 Scouter를 연동하여 성능 테스트 환경을 구축하는 것은 실무에서도 매우 자주 쓰이는 시나리오입니다.
+
+## Overview
+
+JMeter는 부하 테스트 도구로, 가상의 사용자를 만들어 서버에 요청을 보내고 성능 지표를 수집합니다.`;
+
+        document.getElementById('output').innerHTML = '<h2>Original Markdown:</h2><pre>' + testMarkdown + '</pre>';
+
+        function convertMarkdownToHtml(markdown) {
+            // Convert headers
+            let html = markdown.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+
+            // Convert bold and italic
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+            // Convert links
+            html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+            // Convert code blocks
+            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+
+            // Convert inline code
+            html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+            // Convert blockquotes
+            html = html.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');
+
+            // Convert lists
+            html = html.replace(/^\- (.*$)/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>');
+
+            // Convert paragraphs (handle multiple consecutive newlines)
+            html = html.replace(/\n\s*\n/g, '</p><p>');
+            html = '<p>' + html + '</p>';
+            html = html.replace(/<p><\/p>/g, '');
+
+            // Clean up extra paragraph tags around headers and other elements
+            html = html.replace(/<\/p>\s*<h([1-6])>/g, '</h$1><p>');
+            html = html.replace(/<\/h([1-6])>\s*<p>/g, '</h$1>');
+            html = html.replace(/<\/p>\s*<ul>/g, '<ul>');
+            html = html.replace(/<\/ul>\s*<p>/g, '</ul>');
+            html = html.replace(/<\/p>\s*<pre>/g, '<pre>');
+            html = html.replace(/<\/pre>\s*<p>/g, '</pre>');
+
+            return html;
+        }
+
+        const convertedHtml = convertMarkdownToHtml(testMarkdown);
+        document.getElementById('result').innerHTML = '<h2>Converted HTML:</h2><div>' + convertedHtml + '</div>';
+        
+        console.log('Conversion result:', convertedHtml);
+    </script>
+</body>
+</html>
