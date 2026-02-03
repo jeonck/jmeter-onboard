@@ -118,3 +118,40 @@ flowchart LR
 - 예: ShoppingMall_LoadTest_v1, PaymentAPI_StressTest_v2
 
 왼쪽 트리 최상단의 Test Plan을 클릭하고 이름을 수정한 뒤 Ctrl + S를 눌러 저장해 보세요.
+
+---
+
+## 전체 구성 요소 예시: 쇼핑몰 장바구니 부하 테스트
+
+```
+Test Plan: 쇼핑몰_장바구니_부하테스트
+├── 📝 User Defined Variables
+│   ├── IP = 13.125.xxx.xxx
+│   └── PORT = 8080
+├── 🍪 HTTP Cookie Manager ← 세션 유지 필수
+├── 🌐 HTTP Request Defaults
+│   ├── Server: ${IP}
+│   └── Port: ${PORT}
+├── 👥 Thread Group (t3.medium: 100 Users / 50s Ramp-up)
+│   ├── ⏱️ Constant Timer (1000ms)
+│   ├── ⚙️ Step 1: 메인 페이지 (GET /)
+│   ├── ⚙️ Step 2: 로그인 (POST /login)
+│   │   └── ✅ Response Assertion: "로그인 성공"
+│   ├── ⚙️ Step 3: 카테고리 (GET /category?id=electronics)
+│   ├── ⚙️ Step 4: 상품 상세 (GET /product/detail?item_id=1001)
+│   ├── ⚙️ Step 5: 장바구니 담기 (POST /cart/add)
+│   │   └── ✅ Response Assertion: "담기 완료"
+│   └── ⚙️ Step 6: 로그아웃 (GET /logout)
+├── 📊 View Results Tree
+└── 📈 Summary Report
+```
+
+**각 구성 요소 설명:**
+- **User Defined Variables**: IP와 PORT 같은 전역 변수를 정의하여 유지보수를 용이하게 합니다.
+- **HTTP Cookie Manager**: 로그인 세션을 유지하여 정상적인 사용자 흐름을 재현합니다.
+- **HTTP Request Defaults**: 서버 정보를 한 번만 정의하여 모든 요청에 자동 적용합니다.
+- **Thread Group**: 100명의 가상 사용자를 50초 동안 점진적으로 투입하여 t3.medium 서버에 부하를 줍니다.
+- **Constant Timer**: 각 요청 사이에 1초의 간격을 두어 실제 사용자 흐름을 모사합니다.
+- **Response Assertion**: 요청이 성공적으로 처리되었는지 검증하여 테스트 신뢰도를 높입니다.
+- **View Results Tree**: 개별 요청의 상세 응답을 확인하여 디버깅에 활용합니다.
+- **Summary Report**: 전체 테스트 결과를 통계적으로 요약하여 성능 지표를 파악합니다.
