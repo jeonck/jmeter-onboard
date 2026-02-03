@@ -212,6 +212,14 @@ const contentMap = {
     'virtual-user-capacity': {
         file: 'content/virtual-user-capacity.md',
         title: 'Virtual User Capacity'
+    },
+    'function-helper': {
+        file: 'content/function-helper.md',
+        title: 'Function Helper'
+    },
+    'function-helper-filename': {
+        file: 'content/function-helper-filename.md',
+        title: 'Function Helper Filename'
     }
 };
 
