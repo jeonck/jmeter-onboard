@@ -39,12 +39,17 @@ flowchart TD
 
 부하 테스트 시나리오가 `로그인 -> 상품조회(반복) -> 장바구니(반복)`인 경우, 매번 조회할 때마다 로그인을 다시 할 필요는 없습니다.
 
-**구조:**
+**Test Plan 구조:**
 ```
-Thread Group (Loop Count: 50)
-├── Once Only Controller
-│   └── HTTP Request (Login)
-└── HTTP Request (Product Search)
+Test Plan
+├── 🍪 HTTP Cookie Manager ← 세션 유지 필수
+├── 👥 Thread Group (Loop Count: 50)
+│   ├── 🔒 Once Only Controller ← 첫 번째 루프에서만 실행
+│   │   └── ⚙️ HTTP Request: 로그인 (POST /login)
+│   ├── ⚙️ HTTP Request: 상품 검색 (GET /search) ← 50회 반복
+│   ├── ⚙️ HTTP Request: 상품 상세 (GET /product) ← 50회 반복
+│   └── ⚙️ HTTP Request: 장바구니 (POST /cart) ← 50회 반복
+└── 📊 View Results Tree
 ```
 
 **결과:** 사용자는 처음에 한 번 로그인하고, 세션을 유지한 채 상품 조회만 50번 반복합니다.

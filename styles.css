@@ -169,6 +169,19 @@ header .container {
   overflow-x: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #333;
+}
+
+.content-placeholder h1,
+.content-placeholder h2,
+.content-placeholder h3,
+.content-placeholder h4,
+.content-placeholder h5,
+.content-placeholder h6 {
+  color: var(--primary-color) !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 1rem 0 0.5rem 0 !important;
 }
 
 /* Table Styles */
@@ -234,17 +247,44 @@ pre {
   line-height: 1.5;
 }
 
+pre code {
+  color: #e2e8f0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Light Code Block Style */
+.light-code {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #dee2e6;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  white-space: pre-wrap;
+}
+
+.light-code code {
+  color: #e83e8c;
+  background: none;
+  padding: 0;
+}
+
 code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 /* Inline code that's not in pre */
 :not(pre) > code {
-  background-color: #e2e8f0;
-  padding: 0.15rem 0.35rem;
+  background-color: #f0f0f0;
+  color: #c7254e;
+  padding: 0.2rem 0.4rem;
   border-radius: 3px;
   font-size: 0.85em;
   word-break: break-all;
+  border: 1px solid #ddd;
 }
 
 /* Mermaid Diagram Styles */
@@ -271,6 +311,57 @@ blockquote {
   background-color: #f8fafc;
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
   font-size: 0.95rem;
+}
+
+/* Callout/Highlight Box Styles */
+.callout, .highlight-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.callout strong, .highlight-box strong {
+  color: #ffd700;
+}
+
+.callout code, .highlight-box code {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* Info Box */
+.info-box {
+  background-color: #e7f3ff;
+  border-left: 4px solid #2196F3;
+  color: #1565c0;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Warning Box */
+.warning-box {
+  background-color: #fff8e1;
+  border-left: 4px solid #ff9800;
+  color: #e65100;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Success Box */
+.success-box {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  color: #2e7d32;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
 /* List Styles */

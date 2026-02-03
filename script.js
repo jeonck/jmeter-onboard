@@ -273,12 +273,21 @@ function convertMarkdownToHtml(markdown) {
     // Convert mermaid code blocks
     html = html.replace(/```mermaid\n([\s\S]*?)```/g, '<div class="mermaid">$1</div>');
 
+    // Convert light theme code blocks
+    html = html.replace(/```light\n([\s\S]*?)```/g, '<div class="light-code"><code>$1</code></div>');
+
     // Convert code blocks
     html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
     html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
 
     // Convert inline code
     html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+    // Convert callout boxes (:::info, :::warning, :::success)
+    html = html.replace(/:::info\n([\s\S]*?):::/g, '<div class="info-box">$1</div>');
+    html = html.replace(/:::warning\n([\s\S]*?):::/g, '<div class="warning-box">$1</div>');
+    html = html.replace(/:::success\n([\s\S]*?):::/g, '<div class="success-box">$1</div>');
+    html = html.replace(/:::highlight\n([\s\S]*?):::/g, '<div class="highlight-box">$1</div>');
 
     // Convert blockquotes
     html = html.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');

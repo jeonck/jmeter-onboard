@@ -2,6 +2,38 @@
 
 JMeter의 HTTP(S) Test Script Recorder에서 Transaction Control 기능은 레코딩되는 수많은 요청을 의미 있는 단위(로그인, 장바구니 담기 등)로 묶어주는 아주 중요한 관리 도구입니다.
 
+---
+
+## Test Plan 구조 예시 (레코딩 후)
+
+```
+Test Plan
+├── 🍪 HTTP Cookie Manager
+├── 👥 Thread Group
+│   ├── 📁 Transaction Controller: 01_Main
+│   │   ├── ⚙️ HTTP Request: /index.html
+│   │   ├── ⚙️ HTTP Request: /css/style.css
+│   │   └── ⚙️ HTTP Request: /js/main.js
+│   ├── 📁 Transaction Controller: 02_Login
+│   │   ├── ⚙️ HTTP Request: /login (GET - 폼 페이지)
+│   │   └── ⚙️ HTTP Request: /login (POST - 로그인 처리)
+│   ├── 📁 Transaction Controller: 03_ProductDetail
+│   │   ├── ⚙️ HTTP Request: /product?id=1001
+│   │   └── ⚙️ HTTP Request: /product/images/1001.jpg
+│   └── 📁 Transaction Controller: 04_AddCart
+│       └── ⚙️ HTTP Request: /cart/add (POST)
+├── 📊 View Results Tree
+└── 📈 Summary Report ← 트랜잭션별 합산 시간 확인
+```
+
+**레코딩 시 네이밍 순서:**
+1. `01_Main` 입력 → 메인 페이지 접속
+2. `02_Login` 입력 → 로그인 버튼 클릭
+3. `03_ProductDetail` 입력 → 상품 선택
+4. `04_AddCart` 입력 → 장바구니 담기
+
+---
+
 템플릿을 사용하여 레코더를 생성하면, 화면 중앙에 이 기능을 제어하는 패널이 나타납니다. 주요 구성 요소와 활용법은 다음과 같습니다.
 
 ## 1. Transaction Control의 핵심 구성 요소

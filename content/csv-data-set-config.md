@@ -2,6 +2,44 @@
 
 CSV Data Set Config는 JMeter에서 '현실적인 부하'를 만들기 위해 가장 빈번하게 사용하는 설정 요소입니다. 앞서 만든 login_data.csv 같은 외부 파일을 읽어와서, 수많은 가상 사용자(Threads)에게 서로 다른 데이터를 골고루 나눠주는 역할을 합니다.
 
+---
+
+## Test Plan 구조 예시
+
+```
+Test Plan
+├── 📂 CSV Data Set Config ← Thread Group 외부에 배치 (전역)
+│   ├── Filename: login_data.csv
+│   ├── Variable Names: USER_ID, USER_PW
+│   ├── Ignore first line: True
+│   ├── Delimiter: ,
+│   ├── Recycle on EOF: True
+│   └── Sharing mode: All threads
+├── 👥 Thread Group (100 Users, Loop: 10)
+│   ├── ⚙️ HTTP Request: 로그인
+│   │   ├── Parameter: username = ${USER_ID} ← CSV 변수 사용
+│   │   └── Parameter: password = ${USER_PW}
+│   ├── ⚙️ HTTP Request: 상품 조회
+│   └── ⚙️ HTTP Request: 장바구니
+└── 📊 View Results Tree
+```
+
+**CSV 파일 예시 (login_data.csv):**
+```
+USER_ID,USER_PW
+user001,pass001
+user002,pass002
+user003,pass003
+...
+```
+
+**데이터 배분:**
+- User 1 → user001, pass001
+- User 2 → user002, pass002
+- User 3 → user003, pass003
+
+---
+
 핵심 기능과 설정 옵션을 알기 쉽게 정리해 드릴게요.
 
 ## 1. 주요 설정 항목 (Field) 설명

@@ -2,6 +2,38 @@
 
 현실적인 부하 테스트에서 **테스트 데이터 치환(Data Parameterization)**이란, 매번 똑같은 값으로 요청을 보내는 것이 아니라 실제 사용자처럼 다양하고 가변적인 데이터를 사용하여 테스트를 수행하는 기법을 말합니다.
 
+---
+
+## Test Plan 구조 예시
+
+```
+Test Plan
+├── 📝 User Defined Variables
+│   ├── SERVER_IP = 13.125.xxx.xxx
+│   └── SERVER_PORT = 8080
+├── 📂 CSV Data Set Config ← 외부 데이터 파일 연결
+│   ├── Filename: users.csv
+│   ├── Variable Names: USER_ID, USER_PW
+│   └── Sharing Mode: All Threads
+├── 👥 Thread Group (100 Users)
+│   ├── ⚙️ HTTP Request: 로그인
+│   │   ├── Server: ${SERVER_IP}
+│   │   ├── Parameter: username = ${USER_ID} ← CSV에서 읽은 값
+│   │   └── Parameter: password = ${USER_PW}
+│   ├── ⚙️ HTTP Request: 상품 조회
+│   │   └── Parameter: product_id = ${__Random(1,1000)} ← 랜덤 함수
+│   └── ⚙️ HTTP Request: 장바구니
+│       └── Parameter: order_id = ${__UUID} ← 고유값 생성
+└── 📊 Summary Report
+```
+
+**데이터 소스별 사용:**
+- `${USER_ID}`: CSV 파일에서 순차 읽기
+- `${__Random(1,1000)}`: 1~1000 랜덤 숫자
+- `${__UUID}`: 고유 ID 자동 생성
+
+---
+
 예를 들어, 100명의 가상 사용자가 모두 test01이라는 아이디 하나로 동시에 로그인을 시도한다면, 이는 실제 상황과 다를 뿐더러 DB 캐시나 락(Lock) 때문에 왜곡된 결과가 나올 수 있습니다.
 
 ## 1. 왜 데이터 치환이 필수적인가요?

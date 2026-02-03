@@ -2,6 +2,28 @@
 
 JMeter에서 Constant Timer는 가상 사용자(Thread)가 다음 요청을 보내기 전에 일정한 시간 동안 대기하도록 만드는 '지연 시간(Think Time)' 도구입니다.
 
+---
+
+## Test Plan 구조 예시
+
+```
+Test Plan
+├── 👥 Thread Group (100 Users, Loop: 10)
+│   ├── ⏱️ Constant Timer (2000ms) ← 모든 요청에 적용
+│   ├── ⚙️ HTTP Request: 메인 페이지
+│   ├── ⚙️ HTTP Request: 로그인
+│   │   └── ⏱️ Constant Timer (3000ms) ← 로그인 후에만 적용
+│   ├── ⚙️ HTTP Request: 상품 목록
+│   └── ⚙️ HTTP Request: 상품 상세
+└── 📊 View Results Tree
+```
+
+**배치 위치에 따른 차이:**
+- Thread Group 바로 아래: 모든 요청 전에 대기
+- 특정 요청 아래: 해당 요청 전에만 대기
+
+---
+
 현실적인 부하 테스트를 위해서는 서버에 쉴 새 없이 요청을 퍼붓는 것이 아니라, 실제 사람이 화면을 보고 클릭하는 시간 간격을 재현해야 하는데 이때 가장 기본적으로 사용됩니다.
 
 ## 1. 주요 기능 및 설정

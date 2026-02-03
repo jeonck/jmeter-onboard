@@ -4,18 +4,28 @@ t3.medium 서버 환경에서 Scouter 모니터링을 병행하며 수행할 수
 
 ## 🏗️ JMeter Test Plan 전체 구조 (Tree)
 
-- **Test Plan** (최상위: 전역 변수 설정 IP, PORT 등)
-  - HTTP Cookie Manager (로그인 세션 유지 필수 부품)
-  - HTTP Request Defaults (서버 공통 IP/Port 입력)
-  - Thread Group (t3.medium 권장: 100 Threads / 50s Ramp-up)
-  - Constant Timer (각 단계 사이 500ms~1000ms 대기)
-  - **Step 1**: 메인 페이지 조회 (HTTP Request)
-  - **Step 2**: 로그인 수행 (HTTP Request, POST 방식)
-  - **Step 3**: 카테고리 선택 (HTTP Request, GET 방식)
-  - **Step 4**: 상품 상세 선택 (HTTP Request, GET 방식)
-  - **Step 5**: 장바구니 담기 (HTTP Request, POST 방식)
-  - **Step 6**: 로그아웃 수행 (HTTP Request)
-  - View Results Tree / Summary Report (결과 확인용 리스너)
+```
+Test Plan: 쇼핑몰_장바구니_부하테스트
+├── 📝 User Defined Variables
+│   ├── IP = 13.125.xxx.xxx
+│   └── PORT = 8080
+├── 🍪 HTTP Cookie Manager ← 세션 유지 필수
+├── 🌐 HTTP Request Defaults
+│   ├── Server: ${IP}
+│   └── Port: ${PORT}
+├── 👥 Thread Group (t3.medium: 100 Users / 50s Ramp-up)
+│   ├── ⏱️ Constant Timer (1000ms)
+│   ├── ⚙️ Step 1: 메인 페이지 (GET /)
+│   ├── ⚙️ Step 2: 로그인 (POST /login)
+│   │   └── ✅ Response Assertion: "로그인 성공"
+│   ├── ⚙️ Step 3: 카테고리 (GET /category?id=electronics)
+│   ├── ⚙️ Step 4: 상품 상세 (GET /product/detail?item_id=1001)
+│   ├── ⚙️ Step 5: 장바구니 담기 (POST /cart/add)
+│   │   └── ✅ Response Assertion: "담기 완료"
+│   └── ⚙️ Step 6: 로그아웃 (GET /logout)
+├── 📊 View Results Tree
+└── 📈 Summary Report
+```
 
 ## ⚙️ 각 단계별 상세 설정 방법
 

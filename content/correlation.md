@@ -2,6 +2,33 @@
 
 JMeter에서 **Correlation(연관성 처리)**이란, 서버가 보낸 동적인 값(세션 ID, 인증 토큰, 보안 키 등)을 추출하여 다음 요청에 다시 실어 보내는 과정을 말합니다.
 
+---
+
+## Test Plan 구조 예시
+
+```
+Test Plan
+├── 🍪 HTTP Cookie Manager
+├── 👥 Thread Group
+│   ├── ⚙️ HTTP Request: 로그인 (POST /login)
+│   │   └── 🔍 JSON Extractor ← 응답에서 토큰 추출
+│   │       ├── Variable: AUTH_TOKEN
+│   │       └── JSON Path: $.data.token
+│   ├── 🐛 Debug Sampler ← 변수 확인용
+│   ├── ⚙️ HTTP Request: 장바구니 담기
+│   │   └── Header: Authorization = ${AUTH_TOKEN} ← 추출한 값 사용
+│   └── ⚙️ HTTP Request: 주문하기
+│       └── Parameter: csrf_token = ${CSRF_TOKEN}
+└── 📊 View Results Tree
+```
+
+**Correlation 흐름:**
+1. 로그인 응답에서 토큰 추출 (JSON Extractor)
+2. 변수에 저장 (AUTH_TOKEN)
+3. 다음 요청에서 ${AUTH_TOKEN}으로 사용
+
+---
+
 웹 서비스(특히 로그인이나 결제)는 보안과 상태 유지를 위해 매번 바뀌는 값을 요구하기 때문에, 레코딩된 고정된 값을 그대로 쓰면 반드시 에러가 납니다. 이를 해결하는 표준 절차를 정리해 드립니다.
 
 ## 1. Correlation 처리의 4단계 프로세스
