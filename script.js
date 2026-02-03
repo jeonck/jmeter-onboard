@@ -152,6 +152,26 @@ const contentMap = {
     'response-assertion': {
         file: 'content/response-assertion.md',
         title: 'Response Assertion'
+    },
+    'response-time-graph': {
+        file: 'content/response-time-graph.md',
+        title: 'Response Time Graph'
+    },
+    'once-only-controller': {
+        file: 'content/once-only-controller.md',
+        title: 'Once Only Controller'
+    },
+    'jmeter-plugins': {
+        file: 'content/jmeter-plugins.md',
+        title: 'JMeter Plugins'
+    },
+    'jpgc-standard-set': {
+        file: 'content/jpgc-standard-set.md',
+        title: 'JPGC Standard Set'
+    },
+    'plugin-listeners-analysis': {
+        file: 'content/plugin-listeners-analysis.md',
+        title: 'Plugin Listeners Analysis'
     }
 };
 
