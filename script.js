@@ -4,12 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     mermaid.initialize({
         startOnLoad: false,
         theme: 'default',
-        securityLevel: 'loose',
-        flowchart: {
-            useMaxWidth: true,
-            htmlLabels: true,
-            curve: 'basis'
-        }
+        securityLevel: 'loose'
     });
 
     setupMenuGroups();
@@ -153,6 +148,10 @@ const contentMap = {
     'regex-extractor': {
         file: 'content/regex-extractor.md',
         title: 'Regular Expression Extractor'
+    },
+    'response-assertion': {
+        file: 'content/response-assertion.md',
+        title: 'Response Assertion'
     }
 };
 
