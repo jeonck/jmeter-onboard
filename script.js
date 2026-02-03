@@ -220,6 +220,10 @@ const contentMap = {
     'function-helper-filename': {
         file: 'content/function-helper-filename.md',
         title: 'Function Helper Filename'
+    },
+    'command-reference': {
+        file: 'content/command-reference.md',
+        title: 'Command Reference'
     }
 };
 
