@@ -180,6 +180,30 @@ const contentMap = {
     'address-already-in-use': {
         file: 'content/address-already-in-use.md',
         title: 'Address Already In Use Error'
+    },
+    'load-generator-users': {
+        file: 'content/load-generator-users.md',
+        title: 'Load Generator Users'
+    },
+    'sysinternals-suite': {
+        file: 'content/sysinternals-suite.md',
+        title: 'Sysinternals Suite'
+    },
+    'http-client-implementation': {
+        file: 'content/http-client-implementation.md',
+        title: 'HTTP Client Implementation'
+    },
+    'perfmon-collector-basic': {
+        file: 'content/perfmon-collector-basic.md',
+        title: 'PerfMon Collector Basic'
+    },
+    'perfmon-collector-advanced': {
+        file: 'content/perfmon-collector-advanced.md',
+        title: 'PerfMon Collector Advanced'
+    },
+    'perfmon-exec-usage': {
+        file: 'content/perfmon-exec-usage.md',
+        title: 'PerfMon EXEC Usage'
     }
 };
 
