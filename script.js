@@ -172,6 +172,10 @@ const contentMap = {
     'plugin-listeners-analysis': {
         file: 'content/plugin-listeners-analysis.md',
         title: 'Plugin Listeners Analysis'
+    },
+    'ultimate-thread-group': {
+        file: 'content/ultimate-thread-group.md',
+        title: 'Ultimate Thread Group'
     }
 };
 
