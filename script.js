@@ -204,6 +204,14 @@ const contentMap = {
     'perfmon-exec-usage': {
         file: 'content/perfmon-exec-usage.md',
         title: 'PerfMon EXEC Usage'
+    },
+    'jmeter-vs-k6': {
+        file: 'content/jmeter-vs-k6.md',
+        title: 'JMeter vs k6 Comparison'
+    },
+    'virtual-user-capacity': {
+        file: 'content/virtual-user-capacity.md',
+        title: 'Virtual User Capacity'
     }
 };
 
