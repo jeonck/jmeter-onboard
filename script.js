@@ -240,6 +240,10 @@ const contentMap = {
     'pacing-controller-example': {
         file: 'content/pacing-controller-example.md',
         title: 'Pacing Controller Example'
+    },
+    'pacing-transaction-example': {
+        file: 'content/pacing-transaction-example.md',
+        title: 'Pacing Transaction Example'
     }
 };
 
