@@ -248,6 +248,10 @@ const contentMap = {
     'constant-throughput-timer': {
         file: 'content/constant-throughput-timer.md',
         title: 'Constant Throughput Timer'
+    },
+    'performance-test-process': {
+        file: 'content/performance-test-process.md',
+        title: 'Performance Test Process'
     }
 };
 
