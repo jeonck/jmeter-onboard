@@ -287,6 +287,24 @@ code {
   border: 1px solid #ddd;
 }
 
+/* Math Expression Styles (KaTeX) */
+.katex-display {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--secondary-color);
+  overflow-x: auto;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+.content-placeholder .katex-display > .katex {
+  font-size: 1.2em;
+}
+
 /* Mermaid Diagram Styles */
 .mermaid {
   background-color: #fff;

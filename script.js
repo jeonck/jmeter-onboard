@@ -232,6 +232,10 @@ const contentMap = {
     'performance-theory-tps': {
         file: 'content/performance-theory-tps.md',
         title: 'Performance Theory TPS'
+    },
+    'pacing-controller': {
+        file: 'content/pacing-controller.md',
+        title: 'Pacing Controller'
     }
 };
 
@@ -304,6 +308,9 @@ function loadMarkdownContent(filePath) {
 
                 // Render Mermaid diagrams
                 renderMermaidDiagrams();
+
+                // Render Math expressions (KaTeX)
+                renderMathExpressions();
             })
             .catch(error => {
                 console.error(`Error loading ${filePath}:`, error);
@@ -459,6 +466,20 @@ function renderMermaidDiagrams() {
     if (mermaidDivs.length > 0) {
         mermaid.run({
             nodes: mermaidDivs
+        });
+    }
+}
+
+function renderMathExpressions() {
+    const contentArea = document.querySelector('.content-placeholder');
+    if (contentArea && typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(contentArea, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false,
+            trust: true
         });
     }
 }
