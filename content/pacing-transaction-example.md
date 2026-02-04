@@ -2,6 +2,15 @@
 
 JMeter에서 Pacing Controller를 사용할 때, 전체 사용자 흐름을 하나의 트랜잭션으로 묶어 관리하면 더 정밀한 부하 제어가 가능합니다. 이 구조에서는 **Pacing Start**와 **Pacing Pause**를 사용하여 사용자 흐름을 하나의 단위로 감싸는 방식을 사용합니다.
 
+## ⚠️ 중요: 플러그인 설치 필요
+
+이 예시에서 사용하는 **Pacing Start**와 **Pacing Pause** 기능은 JMeter 기본 기능이 아니라, **Custom Thread Groups** 플러그인에 포함된 기능입니다. 사용 전에 반드시 JMeter Plugins Manager를 통해 **Custom Thread Groups** 플러그인을 설치해야 합니다.
+
+**설치 방법**:
+1. JMeter 실행 후 `Options` > `Plugins Manager` 클릭
+2. Available 탭에서 `Custom Thread Groups` 검색
+3. 체크박스 선택 후 `Apply Changes and Restart JMeter` 클릭
+
 ## 1. Pacing Controller + Transaction Controller 구조
 
 이 구조는 사용자 흐름을 하나의 트랜잭션으로 묶어, 전체 흐름의 응답 시간과 TPS를 통합적으로 관리할 수 있게 해줍니다.
