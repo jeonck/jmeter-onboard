@@ -244,6 +244,10 @@ const contentMap = {
     'pacing-transaction-example': {
         file: 'content/pacing-transaction-example.md',
         title: 'Pacing Transaction Example'
+    },
+    'constant-throughput-timer': {
+        file: 'content/constant-throughput-timer.md',
+        title: 'Constant Throughput Timer'
     }
 };
 
