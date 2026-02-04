@@ -121,6 +121,10 @@ const contentMap = {
         file: 'content/distributed-testing-guide.md',
         title: 'Distributed Testing Guide'
     },
+    'java-request-socket-testing': {
+        file: 'content/java-request-socket-testing.md',
+        title: 'Java Request Socket Testing'
+    },
     'data-parameterization': {
         file: 'content/data-parameterization.md',
         title: 'Data Parameterization'
