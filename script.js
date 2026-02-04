@@ -228,6 +228,10 @@ const contentMap = {
     'scouter-introduction': {
         file: 'content/scouter-introduction.md',
         title: 'Scouter Introduction'
+    },
+    'performance-theory-tps': {
+        file: 'content/performance-theory-tps.md',
+        title: 'Performance Theory TPS'
     }
 };
 
