@@ -260,6 +260,10 @@ const contentMap = {
     'firefox-https-recording': {
         file: 'content/firefox-https-recording.md',
         title: 'Firefox HTTPS Recording'
+    },
+    'har-file-method': {
+        file: 'content/har-file-method.md',
+        title: 'HAR File Method'
     }
 };
 
