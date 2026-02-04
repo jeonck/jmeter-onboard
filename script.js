@@ -117,6 +117,10 @@ const contentMap = {
         file: 'content/summary-report.md',
         title: 'Summary Report'
     },
+    'distributed-testing-guide': {
+        file: 'content/distributed-testing-guide.md',
+        title: 'Distributed Testing Guide'
+    },
     'data-parameterization': {
         file: 'content/data-parameterization.md',
         title: 'Data Parameterization'
