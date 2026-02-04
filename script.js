@@ -224,6 +224,10 @@ const contentMap = {
     'command-reference': {
         file: 'content/command-reference.md',
         title: 'Command Reference'
+    },
+    'scouter-introduction': {
+        file: 'content/scouter-introduction.md',
+        title: 'Scouter Introduction'
     }
 };
 
