@@ -252,6 +252,14 @@ const contentMap = {
     'performance-test-process': {
         file: 'content/performance-test-process.md',
         title: 'Performance Test Process'
+    },
+    'critical-load-test': {
+        file: 'content/critical-load-test.md',
+        title: 'Critical Load Test'
+    },
+    'firefox-https-recording': {
+        file: 'content/firefox-https-recording.md',
+        title: 'Firefox HTTPS Recording'
     }
 };
 
